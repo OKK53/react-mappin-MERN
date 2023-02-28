@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 //routes
 const pinRoute = require("./routes/pins");
+const userRoute = require("./routes/users");
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ const connectDB = async () => {
 };
 
 app.use("/api/pins", pinRoute);
+app.use("/api/users", userRoute);
 
 app.listen("5000", () => {
   connectDB();
