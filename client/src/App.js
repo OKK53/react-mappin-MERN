@@ -46,13 +46,15 @@ function App() {
   };
 
   const handleAddClick = (e) => {
-    const longitude = e.lngLat.lng;
-    const latitude = e.lngLat.lat;
-    // console.log(longitude, latitude);
-    setNewPlace({
-      lat: latitude,
-      long: longitude,
-    });
+    if (currentUser) {
+      const longitude = e.lngLat.lng;
+      const latitude = e.lngLat.lat;
+      // console.log(longitude, latitude);
+      setNewPlace({
+        lat: latitude,
+        long: longitude,
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -80,6 +82,15 @@ function App() {
     setCurrentUser(null);
   };
 
+  const handleLogin = () => {
+    setShowRegister(false);
+    setShowLogin(true);
+  };
+
+  const handleRegister = () => {
+    setShowLogin(false);
+    setShowRegister(true);
+  };
   return (
     <div className="App">
       <Map
@@ -171,13 +182,10 @@ function App() {
           </button>
         ) : (
           <div className="buttons">
-            <button className="button login" onClick={() => setShowLogin(true)}>
+            <button className="button login" onClick={handleLogin}>
               Login
             </button>
-            <button
-              className="button register"
-              onClick={() => setShowRegister(true)}
-            >
+            <button className="button register" onClick={handleRegister}>
               Register
             </button>
           </div>
